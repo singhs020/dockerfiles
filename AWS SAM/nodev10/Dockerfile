@@ -7,7 +7,7 @@ RUN apt-get update \
     && apt install -y git
 
 # Define env var
-ENV NVM_DIR ~/.nvm
+ENV NVM_DIR /usr/local
 ENV NODE_VERSION 10.19.0
 
 # install nvm
@@ -29,8 +29,7 @@ RUN sh -c "$(curl -fsSL https://raw.githubusercontent.com/Linuxbrew/install/mast
     && PATH=$HOME/.linuxbrew/bin:$HOME/.linuxbrew/sbin:$PATH
 
 #installing AWS SAM
-RUN brew install gcc \ 
-    && brew tap aws/tap \
+RUN brew tap aws/tap \
     && brew install aws-sam-cli
 
 ENTRYPOINT ["/bin/bash"]
