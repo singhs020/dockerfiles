@@ -25,8 +25,10 @@ RUN useradd -m -s /bin/bash linuxbrew \
 
 # install homebrew
 USER linuxbrew
-RUN sh -c "$(curl -fsSL https://raw.githubusercontent.com/Linuxbrew/install/master/install.sh)" \
-    && PATH=$HOME/.linuxbrew/bin:$HOME/.linuxbrew/sbin:$PATH
+RUN sh -c "$(curl -fsSL https://raw.githubusercontent.com/Linuxbrew/install/master/install.sh)"
+RUN PATH=$HOME/.linuxbrew/bin:$HOME/.linuxbrew/sbin:$PATH
+RUN echo 'eval $(/home/linuxbrew/.linuxbrew/bin/brew shellenv)' >>~/.profile
+RUN source ~/.profile
 
 #installing AWS SAM
 RUN brew tap aws/tap \
