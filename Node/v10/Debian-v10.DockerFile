@@ -1,10 +1,11 @@
 FROM debian:latest
+LABEL maintainer="Simranjeet Singh"
+LABEL version="1.0.0"
+
 RUN rm /bin/sh && ln -s /bin/bash /bin/sh
 RUN apt-get update \
     && apt-get install -y curl \
-    && apt-get -y autoclean \
-    && apt install -y build-essential \
-    && apt install -y git
+    && apt-get -y autoclean
 
 # Define env var
 ENV NVM_DIR /usr/local
@@ -18,20 +19,5 @@ RUN source $NVM_DIR/nvm.sh \
     && nvm install $NODE_VERSION \
     && nvm alias default $NODE_VERSION \
     && nvm use default
-
-# Add User for installing homebrew
-RUN useradd -m -s /bin/bash linuxbrew \
-	&& echo 'linuxbrew ALL=(ALL) NOPASSWD:ALL' >>/etc/sudoers
-
-# install homebrew
-USER linuxbrew
-RUN sh -c "$(curl -fsSL https://raw.githubusercontent.com/Linuxbrew/install/master/install.sh)"
-RUN PATH=$HOME/.linuxbrew/bin:$HOME/.linuxbrew/sbin:$PATH
-RUN echo 'eval $(/home/linuxbrew/.linuxbrew/bin/brew shellenv)' >>~/.profile
-RUN source ~/.profile
-
-#installing AWS SAM
-RUN brew tap aws/tap \
-    && brew install aws-sam-cli
 
 ENTRYPOINT ["/bin/bash"]
