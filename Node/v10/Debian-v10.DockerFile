@@ -1,6 +1,9 @@
 FROM debian:latest
+ARG BUILD_DATE
+
 LABEL maintainer="Simranjeet Singh"
 LABEL version="1.0.0"
+LABEL build-date=$BUILD_DATE
 
 RUN rm /bin/sh && ln -s /bin/bash /bin/sh
 RUN apt-get update \
