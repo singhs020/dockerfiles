@@ -1,5 +1,9 @@
 FROM linuxbrew/brew
 
+LABEL maintainer="Simranjeet Singh"
+LABEL version="1.0.0"
+LABEL build-date=$BUILD_DATE
+
 # Define env var
 ENV NVM_DIR /usr/local
 ENV NODE_VERSION 10.19.0
