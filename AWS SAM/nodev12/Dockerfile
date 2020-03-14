@@ -6,7 +6,7 @@ LABEL build-date=$BUILD_DATE
 
 # Define env var
 ENV NVM_DIR /usr/local
-ENV NODE_VERSION 10.19.0
+ENV NODE_VERSION 12.13.0
 
 # install nvm
 RUN curl --silent -o- https://raw.githubusercontent.com/creationix/nvm/v0.35.3/install.sh | bash
