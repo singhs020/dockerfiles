@@ -15,7 +15,8 @@ RUN curl --silent -o- https://raw.githubusercontent.com/creationix/nvm/v0.35.3/i
 RUN bash -c 'source $NVM_DIR/nvm.sh \
     && nvm install $NODE_VERSION \
     && nvm alias default $NODE_VERSION \
-    && nvm use default'
+    && nvm use default
+    && npm install npm -g'
 
 #installing AWS SAM
 RUN brew tap aws/tap \
